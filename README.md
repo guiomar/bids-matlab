@@ -86,6 +86,7 @@ Starting point was `spm_BIDS.m` from [SPM12](https://github.com/spm/spm12) ([doc
 - [dicm2nii](https://github.com/xiangruili/dicm2nii): A DICOM to BIDS converter
 - [imtool3D_BIDS](https://github.com/tanguyduval/imtool3D_td): A 3D viewer for BIDS directory
 - [Brainstorm](https://github.com/brainstorm-tools/brainstorm3): Comprehensive brain analysis toolbox (includes BIDS [import and export](https://neuroimage.usc.edu/brainstorm/ExportBids) and different examples dealing with BIDS datasets (e.g. [group analysis from a MEG visual dataset](https://neuroimage.usc.edu/brainstorm/Tutorials/VisualGroup), [resting state analysis from OMEGA datasets](https://neuroimage.usc.edu/brainstorm/Tutorials/RestingOmega#BIDS_specifications) )
+- [EEGLAB](https://sccn.ucsd.edu/eeglab): A set of plug-in tools to automatically import, preprocess, and evaluate the quality of EEG data stored using BIDS-EEG ([bids-matlab-tools](https://ieeexplore.ieee.org/abstract/document/9441399) plug-in)
 
 ## Contributors ✨
 

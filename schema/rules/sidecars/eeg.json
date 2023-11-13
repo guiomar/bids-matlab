@@ -1,0 +1,193 @@
+{
+  "EEGHardware": {
+    "selectors": [
+      "datatype == \"eeg\"",
+      "suffix == \"eeg\""
+    ],
+    "fields": {
+      "Manufacturer": "recommended",
+      "ManufacturersModelName": "recommended",
+      "SoftwareVersions": "recommended",
+      "DeviceSerialNumber": "recommended"
+    }
+  },
+  "EEGTaskInformation": {
+    "selectors": [
+      "datatype == \"eeg\"",
+      "suffix == \"eeg\""
+    ],
+    "fields": {
+      "TaskName": {
+        "level": "required",
+        "description_addendum": "A recommended convention is to name resting state task using labels\nbeginning with `rest`.\n"
+      },
+      "TaskDescription": "recommended",
+      "Instructions": {
+        "level": "recommended",
+        "description_addendum": "This is especially important in context of resting state recordings and\ndistinguishing between eyes open and eyes closed paradigms.\n"
+      },
+      "CogAtlasID": "recommended",
+      "CogPOID": "recommended"
+    }
+  },
+  "EEGInstitutionInformation": {
+    "selectors": [
+      "datatype == \"eeg\"",
+      "suffix == \"eeg\""
+    ],
+    "fields": {
+      "InstitutionName": "recommended",
+      "InstitutionAddress": "recommended",
+      "InstitutionalDepartmentName": "recommended"
+    }
+  },
+  "EEGRequired": {
+    "selectors": [
+      "datatype == \"eeg\"",
+      "suffix == \"eeg\""
+    ],
+    "fields": {
+      "EEGReference": "required",
+      "SamplingFrequency": {
+        "level": "required",
+        "description_addendum": "The sampling frequency of data channels that deviate from the main sampling\nfrequency SHOULD be specified in the `channels.tsv` file.\n"
+      },
+      "PowerLineFrequency": "required",
+      "SoftwareFilters": "required"
+    }
+  },
+  "EEGRecommended": {
+    "selectors": [
+      "datatype == \"eeg\"",
+      "suffix == \"eeg\""
+    ],
+    "fields": {
+      "CapManufacturer": "recommended",
+      "CapManufacturersModelName": "recommended",
+      "EEGChannelCount": "recommended",
+      "ECGChannelCount": "recommended",
+      "EMGChannelCount": "recommended",
+      "EOGChannelCount": "recommended",
+      "MISCChannelCount": "recommended",
+      "TriggerChannelCount": "recommended",
+      "RecordingDuration": "recommended",
+      "RecordingType": "recommended",
+      "EpochLength": "recommended",
+      "EEGGround": "recommended",
+      "HeadCircumference": "recommended",
+      "EEGPlacementScheme": "recommended",
+      "HardwareFilters": "recommended",
+      "SubjectArtefactDescription": "recommended"
+    }
+  },
+  "EEGOptional": {
+    "selectors": [
+      "datatype == \"eeg\"",
+      "suffix == \"eeg\""
+    ],
+    "fields": {
+      "ElectricalStimulation": "optional",
+      "ElectricalStimulationParameters": "optional"
+    }
+  },
+  "EEGCoordsystemGeneral": {
+    "selectors": [
+      "datatype == \"eeg\"",
+      "suffix == \"coordsystem\""
+    ],
+    "fields": {
+      "IntendedFor": {
+        "level": "optional",
+        "description_addendum": "This identifies the MRI or CT scan associated with the electrodes,\nlandmarks, and fiducials.\n"
+      }
+    }
+  },
+  "EEGCoordsystemPositions": {
+    "selectors": [
+      "datatype == \"eeg\"",
+      "suffix == \"coordsystem\""
+    ],
+    "fields": {
+      "EEGCoordinateSystem": "required",
+      "EEGCoordinateUnits": "required",
+      "EEGCoordinateSystemDescription": {
+        "level": "recommended",
+        "level_addendum": "required if `EEGCoordinateSystem` is `\"Other\"`"
+      }
+    }
+  },
+  "EEGCoordsystemOther": {
+    "selectors": [
+      "datatype == \"eeg\"",
+      "suffix == \"coordsystem\"",
+      "\"EEGCoordinateSystem\" in sidecar",
+      "sidecar.EEGCoordinateSystem == \"Other\""
+    ],
+    "fields": {
+      "EEGCoordinateSystemDescription": "required"
+    }
+  },
+  "EEGCoordsystemFiducials": {
+    "selectors": [
+      "datatype == \"eeg\"",
+      "suffix == \"coordsystem\""
+    ],
+    "fields": {
+      "FiducialsDescription": "optional",
+      "FiducialsCoordinates": "recommended",
+      "FiducialsCoordinateSystem": "recommended",
+      "FiducialsCoordinateUnits": "recommended",
+      "FiducialsCoordinateSystemDescription": {
+        "level": "recommended",
+        "level_addendum": "required if `FiducialsCoordinateSystem` is `\"Other\"`"
+      }
+    }
+  },
+  "EEGCoordsystemOtherFiducialCoordinateSystem": {
+    "selectors": [
+      "datatype == \"eeg\"",
+      "suffix == \"coordsystem\"",
+      "sidecar.FiducialsCoordinateSystem == \"Other\""
+    ],
+    "fields": {
+      "FiducialsCoordinateSystemDescription": "required"
+    }
+  },
+  "EEGCoordsystemLandmark": {
+    "selectors": [
+      "datatype == \"eeg\"",
+      "suffix == \"coordsystem\""
+    ],
+    "fields": {
+      "AnatomicalLandmarkCoordinates": "recommended",
+      "AnatomicalLandmarkCoordinateSystem": {
+        "level": "recommended",
+        "description_addendum": "Preferably the same as the `EEGCoordinateSystem`."
+      },
+      "AnatomicalLandmarkCoordinateUnits": "recommended"
+    }
+  },
+  "EEGCoordsystemLandmarkDescriptionRec": {
+    "selectors": [
+      "datatype == \"eeg\"",
+      "suffix == \"coordsystem\"",
+      "sidecar.AnatomicalLandmarkCoordinateSystem != \"Other\""
+    ],
+    "fields": {
+      "AnatomicalLandmarkCoordinateSystemDescription": {
+        "level": "recommended",
+        "level_addendum": "required if `AnatomicalLandmarkCoordinateSystem` is `\"Other\"`"
+      }
+    }
+  },
+  "EEGCoordsystemLandmarkDescriptionReq": {
+    "selectors": [
+      "datatype == \"eeg\"",
+      "suffix == \"coordsystem\"",
+      "sidecar.AnatomicalLandmarkCoordinateSystem == \"Other\""
+    ],
+    "fields": {
+      "AnatomicalLandmarkCoordinateSystemDescription": "required"
+    }
+  }
+}

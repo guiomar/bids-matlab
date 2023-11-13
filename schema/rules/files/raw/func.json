@@ -1,0 +1,55 @@
+{
+  "func": {
+    "suffixes": [
+      "bold",
+      "cbv",
+      "sbref"
+    ],
+    "extensions": [
+      ".nii.gz",
+      ".nii",
+      ".json"
+    ],
+    "datatypes": [
+      "func"
+    ],
+    "entities": {
+      "subject": "required",
+      "session": "optional",
+      "task": "required",
+      "acquisition": "optional",
+      "ceagent": "optional",
+      "reconstruction": "optional",
+      "direction": "optional",
+      "run": "optional",
+      "echo": "optional",
+      "part": "optional",
+      "chunk": "optional"
+    }
+  },
+  "phase": {
+    "suffixes": [
+      "phase"
+    ],
+    "extensions": [
+      ".nii.gz",
+      ".nii",
+      ".json"
+    ],
+    "datatypes": [
+      "func"
+    ],
+    "entities": {
+      "subject": "required",
+      "session": "optional",
+      "task": "required",
+      "acquisition": "optional",
+      "ceagent": "optional",
+      "reconstruction": "optional",
+      "direction": "optional",
+      "run": "optional",
+      "echo": "optional",
+      "chunk": "optional"
+    }
+  }
+}

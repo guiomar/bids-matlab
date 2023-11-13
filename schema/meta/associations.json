@@ -1,0 +1,108 @@
+{
+  "events": {
+    "selectors": [
+      "task in entities",
+      "extension != '.json'"
+    ],
+    "target": {
+      "suffix": "events",
+      "extension": ".tsv"
+    },
+    "inherit": true
+  },
+  "aslcontext": {
+    "selectors": [
+      "suffix == 'asl'",
+      "match(extension, '\\.nii(\\.gz)?$')"
+    ],
+    "target": {
+      "suffix": "aslcontext",
+      "extension": ".tsv"
+    },
+    "inherit": true
+  },
+  "m0scan": {
+    "selectors": [
+      "suffix == 'asl'",
+      "match(extension, '\\.nii(\\.gz)?$')"
+    ],
+    "target": {
+      "suffix": "m0scan",
+      "extension": [
+        ".nii",
+        ".nii.gz"
+      ]
+    },
+    "inherit": false
+  },
+  "magnitude": {
+    "selectors": [
+      "suffix == 'fieldmap'",
+      "match(extension, '\\.nii(\\.gz)?$')"
+    ],
+    "target": {
+      "suffix": "magnitude",
+      "extension": [
+        ".nii",
+        ".nii.gz"
+      ]
+    },
+    "inherit": false
+  },
+  "magnitude1": {
+    "selectors": [
+      "match(suffix, 'phase(diff|1)$')",
+      "match(extension, '\\.nii(\\.gz)?$')"
+    ],
+    "target": {
+      "suffix": "magnitude1",
+      "extension": [
+        ".nii",
+        ".nii.gz"
+      ]
+    },
+    "inherit": false
+  },
+  "bval": {
+    "selectors": [
+      "suffix == 'dwi'",
+      "match(extension, '\\.nii(\\.gz)?$')"
+    ],
+    "target": {
+      "extension": ".bval"
+    },
+    "inherit": true
+  },
+  "bvec": {
+    "selectors": [
+      "suffix == 'dwi'",
+      "match(extension, '\\.nii(\\.gz)?$')"
+    ],
+    "target": {
+      "extension": ".bvec"
+    },
+    "inherit": true
+  },
+  "channels": {
+    "selectors": [
+      "intersects([suffix], ['eeg', 'ieeg', 'meg', 'nirs', 'motion', 'optodes'])",
+      "extension != '.json'"
+    ],
+    "target": {
+      "suffix": "channels",
+      "extension": ".tsv"
+    },
+    "inherit": true
+  },
+  "coordsystem": {
+    "selectors": [
+      "intersects([suffix], ['eeg', 'ieeg', 'meg', 'nirs', 'motion', 'electrodes', 'optodes'])",
+      "extension != '.json'"
+    ],
+    "target": {
+      "suffix": "coordsystem",
+      "extension": ".json"
+    },
+    "inherit": true
+  }
+}

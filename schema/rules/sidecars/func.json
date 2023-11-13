@@ -1,0 +1,88 @@
+{
+  "MRIFuncRequired": {
+    "selectors": [
+      "datatype == \"func\"",
+      "suffix == \"bold\"",
+      "match(extension, \"^\\.nii(\\.gz)?$\")"
+    ],
+    "fields": {
+      "TaskName": {
+        "level": "required",
+        "description_addendum": "A recommended convention is to name resting state task using labels\nbeginning with `rest`.\n"
+      }
+    }
+  },
+  "MRIFuncRepetitionTime": {
+    "selectors": [
+      "datatype == \"func\"",
+      "suffix == \"bold\"",
+      "!(\"VolumeTiming\" in sidecar)",
+      "match(extension, \"^\\.nii(\\.gz)?$\")"
+    ],
+    "fields": {
+      "RepetitionTime": {
+        "level": "required",
+        "level_addendum": "mutually exclusive with `VolumeTiming`"
+      }
+    }
+  },
+  "MRIFuncVolumeTiming": {
+    "selectors": [
+      "datatype == \"func\"",
+      "suffix == \"bold\"",
+      "!(\"RepetitionTime\" in sidecar)",
+      "match(extension, \"^\\.nii(\\.gz)?$\")"
+    ],
+    "fields": {
+      "VolumeTiming": {
+        "level": "required",
+        "level_addendum": "mutually exclusive with `RepetitionTime`"
+      }
+    }
+  },
+  "MRIFuncTimingParameters": {
+    "selectors": [
+      "datatype == \"func\"",
+      "suffix == \"bold\""
+    ],
+    "fields": {
+      "NumberOfVolumesDiscardedByScanner": "recommended",
+      "NumberOfVolumesDiscardedByUser": "recommended",
+      "DelayTime": "recommended",
+      "AcquisitionDuration": {
+        "level": "recommended",
+        "level_addendum": "required for sequences that are described with the `VolumeTiming`\nfield and that do not have the `SliceTiming` field set to allow for\naccurate calculation of \"acquisition time\"\n",
+        "issue": {
+          "name": "VOLUME_TIMING_MISSING_ACQUISITION_DURATION",
+          "message": "The field 'VolumeTiming' requires 'AcquisitionDuration' or 'SliceTiming' to be defined.\n"
+        }
+      },
+      "DelayAfterTrigger": "recommended"
+    }
+  },
+  "MRIFuncTaskInformation": {
+    "selectors": [
+      "datatype == \"func\"",
+      "suffix == \"bold\""
+    ],
+    "fields": {
+      "Instructions": {
+        "level": "recommended",
+        "description_addendum": "This is especially important in context of resting state recordings and\ndistinguishing between eyes open and eyes closed paradigms.\n"
+      },
+      "TaskDescription": "recommended",
+      "CogAtlasID": "recommended",
+      "CogPOID": "recommended"
+    }
+  },
+  "PhaseSuffixUnits": {
+    "selectors": [
+      "datatype == \"func\"",
+      "suffix == \"phase\"",
+      "match(extension, \"^\\.nii(\\.gz)?$\")"
+    ],
+    "fields": {
+      "Units": "required"
+    }
+  }
+}

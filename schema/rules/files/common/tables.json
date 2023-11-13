@@ -1,0 +1,45 @@
+{
+  "participants": {
+    "level": "optional",
+    "stem": "participants",
+    "extensions": [
+      ".tsv",
+      ".json"
+    ]
+  },
+  "samples": {
+    "level": "optional",
+    "stem": "samples",
+    "extensions": [
+      ".tsv",
+      ".json"
+    ]
+  },
+  "scans": {
+    "level": "optional",
+    "suffixes": [
+      "scans"
+    ],
+    "extensions": [
+      ".tsv",
+      ".json"
+    ],
+    "entities": {
+      "subject": "required",
+      "session": "optional"
+    }
+  },
+  "sessions": {
+    "level": "optional",
+    "suffixes": [
+      "sessions"
+    ],
+    "extensions": [
+      ".tsv",
+      ".json"
+    ],
+    "entities": {
+      "subject": "required"
+    }
+  }
+}

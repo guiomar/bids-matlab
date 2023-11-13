@@ -1,0 +1,34 @@
+{
+  "MRIAnatomyCommonMetadataFields": {
+    "selectors": [
+      "datatype == \"anat\"",
+      "match(extension, \"^\\.nii(\\.gz)?$\")"
+    ],
+    "fields": {
+      "ContrastBolusIngredient": "optional",
+      "RepetitionTimeExcitation": "optional",
+      "RepetitionTimePreparation": "optional"
+    }
+  },
+  "TaskMetadata": {
+    "selectors": [
+      "datatype == \"anat\"",
+      "entity.task != null",
+      "match(extension, \"^\\.nii(\\.gz)?$\")"
+    ],
+    "fields": {
+      "TaskName": {
+        "level": "recommended",
+        "level_addendum": "if `task` entity is present"
+      },
+      "TaskDescription": {
+        "level": "recommended",
+        "level_addendum": "if `task` entity is present"
+      },
+      "Instructions": {
+        "level": "recommended",
+        "level_addendum": "if `task` entity is present"
+      }
+    }
+  }
+}

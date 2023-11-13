@@ -1,0 +1,135 @@
+{
+  "PhasePartUnits": {
+    "issue": {
+      "code": "PHASE_UNITS",
+      "message": "Phase images (with the `part-phase` entity) must have units \"rad\" or \"arbitrary\".\n",
+      "level": "error"
+    },
+    "selectors": [
+      "modality == \"mri\"",
+      "entities.part == \"phase\"",
+      "\"Units\" in sidecar"
+    ],
+    "checks": [
+      "intersects([sidecar.Units], [\"rad\", \"arbitrary\"])"
+    ]
+  },
+  "EchoTimeGreaterThan": {
+    "issue": {
+      "code": "ECHO_TIME_GREATER_THAN",
+      "message": "'EchoTime' is greater than 1. Are you sure it's expressed in seconds?\n",
+      "level": "warning"
+    },
+    "selectors": [
+      "modality == \"mri\"",
+      "sidecar.EchoTime"
+    ],
+    "checks": [
+      "sidecar.EchoTime <= 1"
+    ]
+  },
+  "TotalReadoutTimeGreaterThan": {
+    "issue": {
+      "code": "TOTAL_READOUT_TIME_GREATER_THAN",
+      "message": "'TotalReadoutTime' is greater than 10. Are you sure it's expressed in seconds?\n",
+      "level": "warning"
+    },
+    "selectors": [
+      "modality == \"mri\"",
+      "sidecar.TotalReadoutTime"
+    ],
+    "checks": [
+      "sidecar.TotalReadoutTime <= 10"
+    ]
+  },
+  "EffectiveEchoSpacingTooLarge": {
+    "issue": {
+      "code": "EFFECTIVEECHOSPACING_TOO_LARGE",
+      "message": "Abnormally high value of 'EffectiveEchoSpacing'.\n",
+      "level": "error"
+    },
+    "selectors": [
+      "modality == \"mri\"",
+      "type(sidecar.RepetitionTime) != \"null\"",
+      "type(sidecar.EffectiveEchoSpacing) != \"null\"",
+      "type(sidecar.PhaseEncodingDirection) != \"null\"",
+      "type(nifti_header) != \"null\""
+    ],
+    "checks": [
+      "sidecar.RepetitionTime >= (\n  sidecar.EffectiveEchoSpacing\n  * nifti_header.dim[index([\"i\", \"j\", \"k\"], sidecar.PhaseEncodingDirection[0])]\n)\n"
+    ]
+  },
+  "SliceTimingElements": {
+    "issue": {
+      "code": "SLICETIMING_ELEMENTS",
+      "message": "The number of elements in the 'SliceTiming' array should match the 'k'\ndimension of the corresponding NIfTI volume.\n",
+      "level": "warning"
+    },
+    "selectors": [
+      "modality == \"mri\"",
+      "type(sidecar.SliceTiming) != \"null\"",
+      "type(nifti_header) != \"null\""
+    ],
+    "checks": [
+      "length(sidecar.SliceTiming) == nifti_header.dim[3]"
+    ]
+  },
+  "EESGreaterThanTRT": {
+    "issue": {
+      "code": "EFFECTIVEECHOSPACING_LARGER_THAN_TOTALREADOUTTIME",
+      "message": "'EffectiveEchoSpacing' should always be smaller than 'TotalReadoutTime'.\n",
+      "level": "error"
+    },
+    "selectors": [
+      "modality == \"mri\"",
+      "sidecar.EffectiveEchoSpacing != null",
+      "sidecar.TotalReadoutTime != null"
+    ],
+    "checks": [
+      "sidecar.EffectiveEchoSpacing < sidecar.TotalReadoutTime"
+    ]
+  },
+  "VolumeTimingNotMonotonicallyIncreasing": {
+    "issue": {
+      "code": "VOLUME_TIMING_NOT_MONOTONICALLY_INCREASING",
+      "message": "'VolumeTiming' is not monotonically increasing.\n",
+      "level": "error"
+    },
+    "selectors": [
+      "modality == \"mri\"",
+      "sidecar.VolumeTiming != null"
+    ],
+    "checks": [
+      "sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming"
+    ]
+  },
+  "BolusCutOffDelayTimeNotMonotonicallyIncreasing": {
+    "issue": {
+      "code": "BOLUS_CUT_OFF_DELAY_TIME_NOT_MONOTONICALLY_INCREASING",
+      "message": "'BolusCutOffDelayTime' is not monotonically increasing.\n",
+      "level": "error"
+    },
+    "selectors": [
+      "modality == \"mri\"",
+      "sidecar.BolusCutoffDelayTime != null"
+    ],
+    "checks": [
+      "sorted(sidecar.BolusCutoffDelayTime) == sidecar.BolusCutoffDelayTime"
+    ]
+  },
+  "RepetitionTimePreparationNotConsistent": {
+    "issue": {
+      "code": "REPETITIONTIME_PREPARATION_NOT_CONSISTENT",
+      "message": "The number of values for 'RepetitionTimePreparation' for this file does\nnot match the 4th dimension of the NIfTI header.\n",
+      "level": "error"
+    },
+    "selectors": [
+      "modality == \"mri\"",
+      "type(sidecar.RepetitionTimePreparation) == \"array\"",
+      "type(nifti_header) != \"null\""
+    ],
+    "checks": [
+      "length(sidecar.RepetitionTimePreparation) == nifti_header.dim[4]"
+    ]
+  }
+}

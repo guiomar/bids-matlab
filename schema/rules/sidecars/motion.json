@@ -1,0 +1,78 @@
+{
+  "motionHardware": {
+    "selectors": [
+      "datatype == \"motion\"",
+      "suffix == \"motion\""
+    ],
+    "fields": {
+      "DeviceSerialNumber": "recommended",
+      "Manufacturer": "recommended",
+      "ManufacturersModelName": "recommended",
+      "SoftwareVersions": "recommended"
+    }
+  },
+  "motionInstitutionInformation": {
+    "selectors": [
+      "datatype == \"motion\"",
+      "suffix == \"motion\""
+    ],
+    "fields": {
+      "InstitutionName": "recommended",
+      "InstitutionAddress": "recommended",
+      "InstitutionalDepartmentName": "recommended"
+    }
+  },
+  "motionTaskInformation": {
+    "selectors": [
+      "datatype == \"motion\"",
+      "suffix == \"motion\""
+    ],
+    "fields": {
+      "TaskName": {
+        "level": "required",
+        "description_addendum": "Task names for motion datasets usually contain information\nabout the specific motion task (for example, \"`walking`\").\n"
+      },
+      "TaskDescription": "recommended",
+      "Instructions": "recommended"
+    }
+  },
+  "motionRequired": {
+    "selectors": [
+      "datatype == \"motion\"",
+      "suffix == \"motion\""
+    ],
+    "fields": {
+      "SamplingFrequency": {
+        "level": "required",
+        "description_addendum": "This field refers to the nominal sampling frequency. For motion data one can use\n\"`SamplingFrequencyEffective`\" if nominal and effective differ.\nThe sampling frequency of data channels that deviate from the main (nominal) sampling\nfrequency SHOULD be specified in the \"`_tracksys-<label>_channels.tsv`\" file.\n"
+      }
+    }
+  },
+  "motionRecommended": {
+    "selectors": [
+      "datatype == \"motion\"",
+      "suffix == \"motion\""
+    ],
+    "fields": {
+      "ACCELChannelCount": "recommended",
+      "ANGACCELChannelCount": "recommended",
+      "GYROChannelCount": "recommended",
+      "JNTANGChannelCount": "recommended",
+      "LATENCYChannelCount": "recommended",
+      "MAGNChannelCount": "recommended",
+      "MISCChannelCount": "recommended",
+      "MissingValues": "recommended",
+      "MotionChannelCount": "recommended",
+      "ORNTChannelCount": "recommended",
+      "POSChannelCount": "recommended",
+      "SamplingFrequencyEffective": {
+        "level": "recommended",
+        "description_addendum": "If not available, the field takes value `n/a`.\n"
+      },
+      "SubjectArtefactDescription": "recommended",
+      "TrackedPointsCount": "recommended",
+      "TrackingSystemName": "optional",
+      "VELChannelCount": "recommended"
+    }
+  }
+}

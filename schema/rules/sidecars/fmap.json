@@ -1,0 +1,69 @@
+{
+  "MRIFieldmapIntendedFor": {
+    "selectors": [
+      "datatype == \"fmap\"",
+      "match(extension, '\\.nii(\\.gz)?$')"
+    ],
+    "fields": {
+      "IntendedFor": {
+        "level": "optional",
+        "description_addendum": "This field is optional, and in case the fieldmaps do not correspond\nto any particular scans, it does not have to be filled.\n"
+      }
+    }
+  },
+  "MRIFieldmapB0FieldIdentifier": {
+    "selectors": [
+      "datatype == \"fmap\"",
+      "match(extension, '\\.nii(\\.gz)?$')",
+      "!(\"IntendedFor\" in sidecar)"
+    ],
+    "fields": {
+      "B0FieldIdentifier": "recommended"
+    }
+  },
+  "MRIFieldmapPhaseDifferencePhasediff": {
+    "selectors": [
+      "datatype == \"fmap\"",
+      "suffix == \"phasediff\"",
+      "match(extension, '\\.nii(\\.gz)?$')"
+    ],
+    "fields": {
+      "EchoTime1": "required",
+      "EchoTime2": "required"
+    }
+  },
+  "MRIFieldmapTwoPhase": {
+    "selectors": [
+      "datatype == \"fmap\"",
+      "intersects([suffix], [\"phase1\", \"phase2\"])",
+      "match(extension, '\\.nii(\\.gz)?$')"
+    ],
+    "fields": {
+      "EchoTime__fmap": "required"
+    }
+  },
+  "MRIFieldmapDirectFieldMapping": {
+    "selectors": [
+      "datatype == \"fmap\"",
+      "suffix == \"fieldmap\"",
+      "match(extension, '\\.nii(\\.gz)?$')"
+    ],
+    "fields": {
+      "Units": {
+        "level": "required",
+        "description_addendum": "Fieldmaps must be in units of Hertz (`\"Hz\"`),\nradians per second (`\"rad/s\"`), or Tesla (`\"T\"`).\n"
+      }
+    }
+  },
+  "MRIFieldmapPepolar": {
+    "selectors": [
+      "datatype == \"fmap\"",
+      "suffix == \"epi\"",
+      "match(extension, '\\.nii(\\.gz)?$')"
+    ],
+    "fields": {
+      "PhaseEncodingDirection": "required",
+      "TotalReadoutTime": "required"
+    }
+  }
+}

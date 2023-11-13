@@ -1,0 +1,67 @@
+{
+  "CHANGES": {
+    "display_name": "Changelog",
+    "file_type": "regular",
+    "description": "Version history of the dataset (describing changes, updates and corrections) MAY be provided in\nthe form of a `CHANGES` text file.\nThis file MUST follow the\n[CPAN Changelog convention](https://metacpan.org/release/HAARG/CPAN-Changes-0.400002/view\\\n/lib/CPAN/Changes/Spec.pod).\nThe `CHANGES` file MUST be either in ASCII or UTF-8 encoding.\n"
+  },
+  "CITATION": {
+    "display_name": "CITATION.cff",
+    "file_type": "regular",
+    "description": "A description of the citation information for the dataset, following the\n[Citation File Format](https://citation-file-format.github.io/) specification.\nThis file permits more detailed and structured descriptions than\n[dataset_description.json](SPEC_ROOT/glossary.md#dataset_description-files).\n"
+  },
+  "LICENSE": {
+    "display_name": "License",
+    "file_type": "regular",
+    "description": "A `LICENSE` file MAY be provided in addition to the short specification of the\nused license in the `dataset_description.json` `\"License\"` field.\nThe `\"License\"` field and `LICENSE` file MUST correspond.\nThe `LICENSE` file MUST be either in ASCII or UTF-8 encoding.\n"
+  },
+  "README": {
+    "display_name": "README",
+    "file_type": "regular",
+    "description": "A REQUIRED text file, `README`, SHOULD describe the dataset in more detail.\nThe `README` file MUST be either in ASCII or UTF-8 encoding and MAY have one of the extensions:\n`.md` ([Markdown](https://www.markdownguide.org/)),\n`.rst` ([reStructuredText](https://docutils.sourceforge.io/rst.html)),\nor `.txt`.\nA BIDS dataset MUST NOT contain more than one `README` file (with or without extension)\nat its root directory.\nBIDS does not make any recommendations with regards to the\n[Markdown flavor](https://www.markdownguide.org/extended-syntax/#lightweight-markup-languages)\nand does not validate the syntax of Markdown and reStructuredText.\nThe `README` file SHOULD be structured such that its contents can be easily understood\neven if the used format is not rendered.\nA guideline for creating a good `README` file can be found in the\n[bids-starter-kit](https://github.com/bids-standard/bids-starter-kit/tree/main/templates/).\n"
+  },
+  "dataset_description": {
+    "display_name": "Dataset Description",
+    "file_type": "regular",
+    "description": "The file `dataset_description.json` is a JSON file describing the dataset.\n"
+  },
+  "genetic_info": {
+    "display_name": "Genetic Information",
+    "file_type": "regular",
+    "description": "The `genetic_info.json` file describes the genetic information available in the\n`participants.tsv` file and/or the genetic database described in\n`dataset_description.json`.\n\nDatasets containing the `Genetics` field in `dataset_description.json` or the\n`genetic_id` column in `participants.tsv` MUST include this file.\n"
+  },
+  "participants": {
+    "display_name": "Participant Information",
+    "file_type": "regular",
+    "description": "The purpose of this RECOMMENDED file is to describe properties of participants\nsuch as age, sex, handedness, species and strain.\nIf this file exists, it MUST contain the column `participant_id`,\nwhich MUST consist of `sub-<label>` values identifying one row for each participant,\nfollowed by a list of optional columns describing participants.\nEach participant MUST be described by one and only one row.\n\nCommonly used *optional* columns in `participants.tsv` files are `age`, `sex`,\n`handedness`, `strain`, and `strain_rrid`.\n\nThe RECOMMENDED `species` column SHOULD be a binomial species name from the\n[NCBI Taxonomy](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi)\n(for examples `homo sapiens`, `mus musculus`, `rattus norvegicus`).\nFor backwards compatibility, if `species` is absent, the participant is assumed to be\n`homo sapiens`.\n"
+  },
+  "samples": {
+    "display_name": "Sample Information",
+    "file_type": "regular",
+    "description": "The purpose of this file is to describe properties of samples, indicated by the `sample` entity.\nThis file is REQUIRED if `sample-<label>` is present in any filename within the dataset.\nEach sample MUST be described by one and only one row.\n"
+  },
+  "code": {
+    "display_name": "Code",
+    "file_type": "directory",
+    "description": "A directory in which to store any code\n(for example the one used to generate the derivatives from the raw data).\nSee the [Code section](SPEC_ROOT/modality-agnostic-files.md#code)\nfor more information.\n"
+  },
+  "derivatives": {
+    "display_name": "Derivative data",
+    "file_type": "directory",
+    "description": "Derivative data (for example preprocessed files).\nSee the [relevant section](SPEC_ROOT/common-principles.md#source-vs-raw-vs-derived-data)\nfor more information.\n"
+  },
+  "phenotype": {
+    "display_name": "Phenotype",
+    "file_type": "directory",
+    "description": "A directory where to store participant level measurements (for\nexample responses from multiple questionnaires) split into\nindividual files separate from `participants.tsv`.\nSee the [relevant section](SPEC_ROOT/modality-agnostic-files.md#phenotypic-and-assessment-data)\nfor more information.\n"
+  },
+  "sourcedata": {
+    "display_name": "Source data",
+    "file_type": "directory",
+    "description": "A directory where to store data before harmonization, reconstruction,\nand/or file format conversion (for example, E-Prime event logs or DICOM files).\nSee the [relevant section](SPEC_ROOT/common-principles.md#source-vs-raw-vs-derived-data)\nfor more information.\n"
+  },
+  "stimuli": {
+    "display_name": "Stimulus files",
+    "file_type": "directory",
+    "description": "A directory to store any stimulus files used during an experiment.\nSee the [relevant section](SPEC_ROOT/modality-specific-files/task-events.md#stimuli-directory)\nfor more information.\n"
+  }
+}

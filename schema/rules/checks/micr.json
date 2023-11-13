@@ -1,0 +1,35 @@
+{
+  "PixelSizeInconsistent": {
+    "issue": {
+      "code": "PIXEL_SIZE_INCONSISTENT",
+      "message": "'PixelSize' need to be consistent with the 'PhysicalSizeX', 'PhysicalSizeY' and 'PhysicalSizeZ'\nOME metadata fields.\n",
+      "level": "error"
+    },
+    "selectors": [
+      "ome != null",
+      "sidecar.PixelSize != null",
+      "sidecar.PixelSizeUnit != null"
+    ],
+    "checks": [
+      "ome.PhysicalSizeX * 10 ** (-3 * index([\"mm\", \"um\", \"nm\"], ome.PhysicalSizeXUnit))\n== sidecar.PixelSize[0] * 10 ** (-3 * index([\"mm\", \"um\", \"nm\"], sidecar.PixelSizeUnit))\n",
+      "ome.PhysicalSizeY * 10 ** (-3 * index([\"mm\", \"um\", \"nm\"], ome.PhysicalSizeYUnit))\n== sidecar.PixelSize[1] * 10 ** (-3 * index([\"mm\", \"um\", \"nm\"], sidecar.PixelSizeUnit))\n",
+      "ome.PhysicalSizeZ * 10 ** (-3 * index([\"mm\", \"um\", \"nm\"], ome.PhysicalSizeZUnit))\n== sidecar.PixelSize[2] * 10 ** (-3 * index([\"mm\", \"um\", \"nm\"], sidecar.PixelSizeUnit))\n"
+    ]
+  },
+  "InconsistentTiffExtension": {
+    "issue": {
+      "code": "INCONSISTENT_TIFF_EXTENSION",
+      "message": "Inconsistent TIFF file type and extension\n",
+      "level": "error"
+    },
+    "selectors": [
+      "tiff != null",
+      "intersects([extension], ['.ome.tif', '.ome.btf'])"
+    ],
+    "checks": [
+      "tiff.version == 42 || tiff.version == 43",
+      "(extension == '.ome.tif') == (tiff.version == 42)",
+      "(extension == '.ome.btf') == (tiff.version == 43)"
+    ]
+  }
+}

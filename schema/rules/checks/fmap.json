@@ -1,0 +1,56 @@
+{
+  "EchoTime12DifferenceUnreasonable": {
+    "issue": {
+      "code": "ECHOTIME1_2_DIFFERENCE_UNREASONABLE",
+      "message": "The value of (EchoTime2 - EchoTime1) should be within the range of 0.0001 - 0.01.\n",
+      "level": "error"
+    },
+    "selectors": [
+      "suffix == \"phasediff\""
+    ],
+    "checks": [
+      "sidecar.EchoTime2 - sidecar.EchoTime1 >= 0.0001",
+      "sidecar.EchoTime2 - sidecar.EchoTime1 <= 0.01"
+    ]
+  },
+  "FmapFieldmapWithoutMagnitude": {
+    "issue": {
+      "code": "FIELDMAP_WITHOUT_MAGNITUDE_FILE",
+      "message": "'fieldmap.nii[.gz]' file does not have an associated 'magnitude.nii[.gz]' file.\n",
+      "level": "error"
+    },
+    "selectors": [
+      "suffix == \"fieldmap\""
+    ],
+    "checks": [
+      "\"magnitude\" in associations"
+    ]
+  },
+  "FmapPhasediffWithoutMagnitude": {
+    "issue": {
+      "code": "MISSING_MAGNITUDE1_FILE",
+      "message": "'phasediff.nii[.gz]' file does not have an associated 'magnitude1.nii[.gz]' file.\n",
+      "level": "warning"
+    },
+    "selectors": [
+      "suffix == \"phasediff\""
+    ],
+    "checks": [
+      "\"magnitude1\" in associations"
+    ]
+  },
+  "MagnitudeFileWithTooManyDimensions": {
+    "issue": {
+      "code": "MAGNITUDE_FILE_WITH_TOO_MANY_DIMENSIONS",
+      "message": "'magnitude1.nii[.gz]' and 'magnitude2.nii[.gz]' files must have exactly three dimensions.\n",
+      "level": "error"
+    },
+    "selectors": [
+      "intersects([suffix], ['magnitude1', 'magnitude2'])",
+      "nifti_header != null"
+    ],
+    "checks": [
+      "nifti_header.dim[0] == 3"
+    ]
+  }
+}

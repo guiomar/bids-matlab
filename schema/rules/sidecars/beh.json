@@ -1,0 +1,24 @@
+{
+  "BEHTaskInformation": {
+    "selectors": [
+      "intersects([suffix], [\"beh\", \"events\"])"
+    ],
+    "fields": {
+      "TaskName": "recommended",
+      "Instructions": "recommended",
+      "TaskDescription": "recommended",
+      "CogAtlasID": "recommended",
+      "CogPOID": "recommended"
+    }
+  },
+  "BEHInstitutionInformation": {
+    "selectors": [
+      "intersects([suffix], [\"beh\", \"events\"])"
+    ],
+    "fields": {
+      "InstitutionName": "recommended",
+      "InstitutionAddress": "recommended",
+      "InstitutionalDepartmentName": "recommended"
+    }
+  }
+}

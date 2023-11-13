@@ -1,0 +1,45 @@
+{
+  "TooFewAuthors": {
+    "issue": {
+      "code": "TOO_FEW_AUTHORS",
+      "message": "The 'Authors' field of 'dataset_description.json' should contain an array of values -\nwith one author per value.\nThis was triggered based on the presence of only one author field.\nPlease ignore if all contributors are already properly listed.\n",
+      "level": "warning"
+    },
+    "selectors": [
+      "path == '/dataset_description.json'"
+    ],
+    "checks": [
+      "length(json.Authors) > 1"
+    ]
+  },
+  "SuspiciouslyLongBOLDDesign": {
+    "issue": {
+      "code": "SUSPICIOUSLY_LONG_EVENT_DESIGN",
+      "message": "The onset of the last event is after the total duration of the corresponding scan.\nThis design is suspiciously long.\n",
+      "level": "warning"
+    },
+    "selectors": [
+      "suffix == \"bold\"",
+      "associations.events != null",
+      "type(nifti_header) != \"null\""
+    ],
+    "checks": [
+      "max(associations.events.onset) < nifti_header.pixdim[4] * nifti_header.dim[4]"
+    ]
+  },
+  "SuspiciouslyShortBOLDDesign": {
+    "issue": {
+      "code": "SUSPICIOUSLY_SHORT_EVENT_DESIGN",
+      "message": "The onset of the last event is less than half the total duration of the corresponding scan.\nThis design is suspiciously short.\n",
+      "level": "warning"
+    },
+    "selectors": [
+      "suffix == \"bold\"",
+      "associations.events != null",
+      "type(nifti_header) != \"null\""
+    ],
+    "checks": [
+      "max(associations.events.onset) > nifti_header.pixdim[4] * nifti_header.dim[4] / 2"
+    ]
+  }
+}

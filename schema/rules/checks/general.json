@@ -1,0 +1,28 @@
+{
+  "DuplicateFiles": {
+    "issue": {
+      "code": "DUPLICATE_FILES",
+      "message": "File exists with and without `.gz` extension.\n",
+      "level": "error"
+    },
+    "selectors": [
+      "match(extension, '\\.gz$')"
+    ],
+    "checks": [
+      "exists(substr(path, 0, length(path) - 3), \"dataset\") == 0"
+    ]
+  },
+  "ReadmeFileSmall": {
+    "issue": {
+      "code": "README_FILE_SMALL",
+      "message": "The recommended file '/README' is very small.\nPlease consider expanding it with additional information about the dataset.\n",
+      "level": "warning"
+    },
+    "selectors": [
+      "match(path, '^README')"
+    ],
+    "checks": [
+      "size > 150"
+    ]
+  }
+}

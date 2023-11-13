@@ -1,0 +1,23 @@
+{
+  "MRIDiffusionMultipart": {
+    "selectors": [
+      "datatype == \"dwi\"",
+      "suffix == \"dwi\"",
+      "match(extension, \"^\\.nii(\\.gz)?$\")"
+    ],
+    "fields": {
+      "MultipartID": "optional"
+    }
+  },
+  "MRIDiffusionOtherMetadata": {
+    "selectors": [
+      "datatype == \"dwi\"",
+      "suffix == \"dwi\"",
+      "match(extension, \"^\\.nii(\\.gz)?$\")"
+    ],
+    "fields": {
+      "PhaseEncodingDirection": "recommended",
+      "TotalReadoutTime": "recommended"
+    }
+  }
+}
